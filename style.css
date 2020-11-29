@@ -1,0 +1,41 @@
+body {
+    background: #DDF0FF;
+}
+
+small{
+		font-size: 0.5em;
+	
+}
+.head-img {
+    width: 100%;
+}
+
+.bg-main {
+    background: #013571;
+}
+
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.padding-16 {
+    padding: 16px;
+}
+
+.yellow-box{
+	background-color: rgba(255, 255, 173, 0.9);
+	border: 2px dashed black; 
+}
+
+.text-red{
+		color:red;
+}
+
+#red-alert{
+		color: red;
+		font-size: 1.5em;
+}

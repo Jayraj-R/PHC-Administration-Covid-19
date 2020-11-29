@@ -1,0 +1,23 @@
+body {
+    background: #DDF0FF;
+}
+
+.head-img {
+    width: 98%;
+}
+
+.bg-main {
+    background: #013571;
+}
+
+.padding-0 {
+    padding: 0;
+}
+
+.tab-content {
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    height: 35em;
+    width: 75em;
+}

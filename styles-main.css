@@ -21,3 +21,11 @@ body {
     height: 35em;
     width: 75em;
 }
+.yellow-box{
+	background-color: rgba(255, 255, 173, 0.9);
+	border: 2px dashed black; 
+}
+
+.text-red{
+		color:red;
+}

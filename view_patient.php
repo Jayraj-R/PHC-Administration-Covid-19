@@ -11,15 +11,17 @@ if($_POST['searchby']=='ROLL')
 ELSE IF($_POST['searchby']=='NAME')
 	$qry="SELECT * FROM STUDENT WHERE NAME LIKE '%$search%'";
 ELSE IF($_POST['searchby']=='PROG')
-	$qry="SELECT * FROM STUDENT WHERE PROG ='$search'";
+	$qry="SELECT * FROM STUDENT WHERE PROG LIKE '$search'";
 ELSE IF($_POST['searchby']=='BRANCH')
-	$qry="SELECT * FROM STUDENT WHERE BRANCH ='$search'";
+	$qry="SELECT * FROM STUDENT WHERE BRANCH LIKE '$search'";
 ELSE IF($_POST['searchby']=='BATCH')
 	$qry="SELECT * FROM STUDENT WHERE ROLL LIKE '$search%'";
 ELSE IF($_POST['searchby']=='ALL')
 	$qry="SELECT * FROM STUDENT";
 ELSE IF($_POST['searchby']=='DATE')
-	$qry="SELECT * FROM STUDENT";
+	$qry="SELECT * FROM ALLOTTED_TIME, STUDENT WHERE STUDENT.ROLL=ALLOTTED_TIME.ROLL AND DATE LIKE '%$search%'";
+ELSE IF($_POST['searchby']=='TIME')
+	$qry="SELECT * FROM ALLOTTED_TIME, STUDENT WHERE STUDENT.ROLL=ALLOTTED_TIME.ROLL AND TIMESLOT LIKE '$search%';";
 
 $result=mysql_query($qry);
 echo '<div class="mt-lg-5 row row-content justify-content-center">

@@ -17,8 +17,10 @@
 	$result=mysql_query($qry);
 	$row=mysql_fetch_assoc($result);
 	
+
+	
 	echo '<div class="row justify-content-center">
-			<div class="yellow-box col-8" >
+			<div class="yellow-box col-6" >
                             <h3 class="mb-0 text-red">
                                 <center>Bed has been alloted.</center>
                             </h3><br><p class="d-sm-block"><strong>'.$roll.'</strong>, you have been given bed no. '.$row['S_NO'].'</p>'; 
@@ -28,12 +30,18 @@
 	else{
 		$roll=$_POST['roll'];
 		echo '<div class="row justify-content-center">
-			<div class="yellow-box col-8" >
+			<div class="yellow-box col-6" >
                             <h3 class="mb-0 text-red">
                                 <center>No bed available.</center>
                             </h3><br><p class="d-sm-block"><strong>'.$roll.'</strong>, we are sorry no bed is available at the moment.</p>'; 
 								
 		echo'</div></div>';
+	
+	
+	$in_date=date("Y-m-")."".$day;
+	$bed_num=$row['S_NO'];
+	$qry="INSERT INTO BED_LOG(ROLL,IN_DATE,S_NO) VALUES ('$roll','$in_date','$bed_num')";
+	$result=mysql_query($qry);
 		
 	}
 ?>

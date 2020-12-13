@@ -34,10 +34,10 @@
             <div class="row justify-content-between">
                 <div class="col-md-2 bg-main padding-0">
                     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link  bg-main text-white" id="patient-tab" data-toggle="pill" href="#patient" role="tab" aria-controls="patient" aria-selected="true">Patient</a>
-                        <a class="nav-link active bg-main text-white" id="allot-bed-tab" data-toggle="pill" href="#allot-bed" role="tab" aria-controls="allot-bed" aria-selected="false">Allot bed</a>
-                        <a class="nav-link bg-main text-white" id="feature3-tab" data-toggle="pill" href="#feature3" role="tab" aria-controls="feature3" aria-selected="false">feature3</a>
-                        <a class="nav-link bg-main text-white" id="feature4-tab" data-toggle="pill" href="#feature4" role="tab" aria-controls="feature4" aria-selected="false">feature4</a>
+                        <a class="nav-link  bg-main text-white" id="patient-tab" data-toggle="pill" href="#patient" role="tab" aria-controls="patient" aria-selected="true">Patients</a>
+                        <a class="nav-link active bg-main text-white" id="allot-bed-tab" data-toggle="pill" href="#allot-bed" role="tab" aria-controls="allot-bed" aria-selected="false">Allot-deallot bed</a>
+                        <a class="nav-link bg-main text-white" id="current-bed-tab" data-toggle="pill" href="#current-bed" role="tab" aria-controls="current-bed" aria-selected="false">Currently allotted bed</a>
+                        <a class="nav-link bg-main text-white" id="doctor-tab" data-toggle="pill" href="#doctor" role="tab" aria-controls="doctor" aria-selected="false">Doctors</a>
                     </div>
                 </div>
                 <div class="col-md-10 content">
@@ -83,76 +83,80 @@
 							?>
 							
                         </div>
+						<!--Patient complete -->
                         
+						<!--Allot-deallot tab -->
                         <div class="tab-pane fade show active" id="allot-bed" role="tabpanel" aria-labelledby="allot-bed-tab">
-						
-							<div class="row mt-5 align-items-center">
-								<div class="col-3">
-									<div class="card">
-										<h4 class="card-header bg-main text-white">Total Bed Available</h4>
-										<div class="card-body">
-											<?php
-												echo '<div class="d-none">';
-												$conn=mysql_connect('localhost','root','');
-												$db=mysql_select_db('dbms_pr');
-												echo '</div>';
-
-												$qry="SELECT * FROM BED WHERE VACANCY=1";
-												$result=mysql_query($qry);
-												$num=mysql_num_rows($result);
-												echo "<center>".$num."/5</center>";
-											
-											?>
-										</div>
-									</div>
-								</div>
+							<div class="row mt-5">
 								
 								<div class="col-8">
-								
 									<form role=" form " action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 										<div class="form-group row justify-content-around">
-												<label for="roll" class="col-md-2 col-form-label">Roll number:</label>
+											<input type="text" class="col-md-3 form-control" id="roll" name="roll" placeholder="Roll number" required>
 										</div>
-										<div class="form-group row justify-content-around">
-												<input type="text" class="col-md-3 form-control" id="roll" name="roll" placeholder="Roll number" required>
-										</div>
-										<div class="form-group row justify-content-around">
-											<button type="submit" class="btn btn-primary" name="bed-allot-btn" value="bed-allot--btn" >
-													<strong>Allot</strong>
+										<div class="form-group mt-5 row justify-content-around">
+											<button type="submit" class="col-2 btn btn-success" name="bed-allot-btn" value="bed-allot--btn" >
+														<strong>Allot</strong>
+											</button>
+											<button type="submit" class="col-2 btn btn-danger" name="bed-deallot-btn" value="bed-deallot-btn" >
+														<strong>Deallot</strong>
 											</button>
 										</div>
-									</form>
-									
-								
+										
 								</div>
-								
-								
+							
+								<div class="col-3">
+									<div class="card">
+											<h4 class="card-header bg-main text-white">Total Bed Available</h4>
+											<div class="card-body">
+												<?php
+													echo '<div class="d-none">';
+													$conn=mysql_connect('localhost','root','');
+													$db=mysql_select_db('dbms_pr');
+													echo '</div>';
+
+													$qry="SELECT * FROM BED WHERE VACANCY=1";
+													$result=mysql_query($qry);
+													$num=mysql_num_rows($result);
+													echo "<center>".$num."/5</center>";
+												
+												?>
+											</div>
+										</div>		
+								</div>
+						
 							</div>
-								<?php
+							<?php
 								if(isset($_POST['bed-allot-btn'])){
 									include 'allot_bed.php';
 								}
-								?>
-								
-						
-						
-						
-						
+							?>
+							<?php
+								if(isset($_POST['bed-deallot-btn'])){
+									include 'deallot_bed.php';
+								}
+							?>
 						
 						
 						</div>
-                        <div class="tab-pane fade" id="feature3" role="tabpanel" aria-labelledby="feature3-tab">
+						<!--Allot-Deallot complete -->
 						
+						<!-- View current bed-->
+                        <div class="tab-pane fade" id="current-bed" role="tabpanel" aria-labelledby="current-bed-tab">
 						
-							feature3
 							<?php
 								include 'view_bed.php';	
 							?>
-							
-							
-							
 						</div>
-                        <div class="tab-pane fade" id="feature4" role="tabpanel" aria-labelledby="feature4-tab">feature4</div>
+						<!-- View doctor-->
+                        <div class="tab-pane fade" id="doctor" role="tabpanel" aria-labelledby="doctor-tab">
+							<?php
+								include 'doc.php';	
+							?>
+						</div>
+						<!--Doctor complete-->
+						
+						
                     </div>
                 </div>
             </div>

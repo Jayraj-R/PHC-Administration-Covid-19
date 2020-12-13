@@ -26,10 +26,6 @@ echo '</div>';
 			//if count of any slot is less than 5
 			$result=mysql_query($qry);
 			$num = mysql_num_rows($result);
-			
-			
-			
-						
 						
 			if($num>0){
 				$row = mysql_fetch_assoc($result);
@@ -53,15 +49,57 @@ echo '</div>';
 						echo'</div></div>';
 				
 				
-				$qry="INSERT INTO ALLOTTED_TIME(ROLL,TIMESLOT,DATE) VALUES ('$roll','$time','$inserted_date')";
+				$qry="INSERT INTO ALLOTED_TIME(ROLL,TIME_SLOT,DATE) VALUES ('$roll','$time','$inserted_date')";
 				$result3=mysql_query($qry);
-				/*$to = "akamanjangra@gmail.com";
-				$subject = "My subject";
-				$txt = "NAME: ".$name."<br>Roll Number: ".$roll."<br>time slot alloted is ".$time." of ".$day." ".$other."<br>";
-				$headers = "From: fly.01.higher@gmail.com";
+				//$email_id=$roll."@iiitdmj.ac.in";
+				//email stuff-----------------------------------------------------------
+			echo'<div class="d-none">';
+			require 'PHPMailerAutoload.php';
+			require 'cred.php';
 
-				mail($to,$subject,$txt,$headers);*/
+			$mail = new PHPMailer;
+
+			 $mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 // SMTP username
+			$mail->Password = PASS;                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;     
+            $mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+          
+
+
+
+			                               // TCP port to connect to
+
+			$mail->setFrom(EMAIL, 'PHC MANAGEMENT');
+			$mail->addAddress('phcadm001@gmail.com');     // Add a recipient
+
+			$mail->addReplyTo(EMAIL);
 			
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = $_POST['subject'];
+			$mail->Body    = '<div style="border:2px solid red;">'.$name.' YOUR REGISTRATION HAS BEEN <b> CONFIRMED! you have to visit phc at '.$time." at ".$day.' of '.$other.'</b></div>';
+			$mail->AltBody = $_POST['message'];
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo 'Message has been sent';
+			}
+			echo'</div>';
+			//email stuff end-----------------------------------------------------------------
 			}
 			else{
 				//if count is 5 nd next slot is null
@@ -75,6 +113,8 @@ echo '</div>';
 						$sno=$row1['S_NO'];
 						$day=date("d") + 1;
 						$other=date("F Y");
+						$full_date=date("Y-m-");
+						$inserted_date=$full_date."".$day;
 						$qry="UPDATE TIME SET COUNT='$curr' WHERE S_NO='$sno'";
 						$result1=mysql_query($qry);
 						
@@ -89,14 +129,57 @@ echo '</div>';
 						
 						
 						
-						$qry="INSERT INTO ALLOTTED_TIME(ROLL,TIME_SLOT,TEST_DATE) VALUES ('$roll','$time','$day')";
-				$result3=mysql_query($qry);
-						/*$to = "akamanjangra@gmail.com";
-						$subject = "My subject";
-						$txt = "NAME: ".$name."<br>Roll Number: ".$roll."<br>time slot alloted is ".$time." of ".$day." ".$other."<br>";
-						$headers = "From: fly.01.higher@gmail.com";
+						$qry="INSERT INTO ALLOTED_TIME(ROLL,TIME_SLOT,DATE) VALUES ('$roll','$time','$inserted_date')";
+						$result3=mysql_query($qry);
+						//$email_id=$roll."@iiitdmj.ac.in";
+			//again email stuff-----------------------------------------------------------
+			echo'<div class="d-none">';
+			require 'PHPMailerAutoload.php';
+			require 'cred.php';
 
-						mail($to,$subject,$txt,$headers);*/
+			$mail = new PHPMailer;
+
+			 $mail->SMTPDebug = 4;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 // SMTP username
+			$mail->Password = PASS;                           // SMTP password
+			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;     
+            $mail->SMTPOptions = array(
+    'ssl' => array(
+        'verify_peer' => false,
+        'verify_peer_name' => false,
+        'allow_self_signed' => true
+    )
+);
+          
+
+
+
+			                               // TCP port to connect to
+
+			$mail->setFrom(EMAIL, 'PHC MANAGEMENT');
+			$mail->addAddress('phcadm001@gmail.com');     // Add a recipient
+
+			$mail->addReplyTo(EMAIL);
+			
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = $_POST['subject'];
+			$mail->Body    = '<div style="border:2px solid red;">'.$name.' YOUR REGISTRATION HAS BEEN <b> CONFIRMED! you have to visit phc at '.$time." at ".$day.' of '.$other.'</b></div>';
+			$mail->AltBody = $_POST['message'];
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo 'Message has been sent';
+			}
+			echo'</div>';
+			//----------------------------------------------------------------------
 					}
 				}
 				else {
@@ -126,7 +209,5 @@ echo '</div>';
                                 <p class="d-sm-block"><strong><center>'.mysql_error().'</center></strong></p><br>'; 
 						echo'</div></div>';
 			}
-
-
 
 ?>

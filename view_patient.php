@@ -31,10 +31,10 @@ echo '<div class="mt-lg-5 row row-content justify-content-center">
 					<thead class="thead-dark">
 						<tr>
 							<th> Name </th> 
-							<th> Roll </th>
-							<th> Branch </th>
-							<th> Programme </th>
-							<th> Hall-Room no. </th> 
+							<th><center> Roll </center></th>
+							<th><center> Branch </center></th>
+							<th><center> Programme </center></th>
+							<th> Hall-Room no.</th> 
 							<th> Phone number</th>
 							
 						</tr>
@@ -45,9 +45,9 @@ while($row = mysql_fetch_assoc($result))
 echo '<tr> 
 
 <td>'.$row['NAME'].'</td>
-<td>'.$row['ROLL'].'</td>
-<td>'.$row['BRANCH'].'</td>
-<td>'.$row['PROG'].'</td>
+<td><center>'.$row['ROLL'].'</center></td>
+<td><center>'.$row['BRANCH'].'</center></td>
+<td><center>'.$row['PROG'].'</center></td>
 <td>'.$row['ADDRESS'].'</td>
 <td>'.$row['phone_number'].'</td>
 

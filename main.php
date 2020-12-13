@@ -37,7 +37,10 @@
                         <a class="nav-link  bg-main text-white" id="patient-tab" data-toggle="pill" href="#patient" role="tab" aria-controls="patient" aria-selected="true">Patients</a>
                         <a class="nav-link active bg-main text-white" id="allot-bed-tab" data-toggle="pill" href="#allot-bed" role="tab" aria-controls="allot-bed" aria-selected="false">Allot-deallot bed</a>
                         <a class="nav-link bg-main text-white" id="current-bed-tab" data-toggle="pill" href="#current-bed" role="tab" aria-controls="current-bed" aria-selected="false">Currently allotted bed</a>
+						<a class="nav-link  bg-main text-white" id="positive-tab" data-toggle="pill" href="#positive" role="tab" aria-controls="positive" aria-selected="true">Covid-19 positive patients</a>
                         <a class="nav-link bg-main text-white" id="doctor-tab" data-toggle="pill" href="#doctor" role="tab" aria-controls="doctor" aria-selected="false">Doctors</a>
+						<a class="nav-link bg-main text-white ml-5" data-toggle="pill" role="tab" aria-selected="false">&nbsp;&nbsp; <a class="links" style="text-decoration: none;" onMouseOver="this.style.color='white'" onMouseOut="this.style.color='#007aff'" href="reset_time.php">&nbsp;&nbsp;  Reset time</a><a style="text-decoration: none;"  onMouseOver="this.style.color='white'" onMouseOut="this.style.color='#007aff'" href="logout.php">&nbsp;&nbsp; Logout</a>
+						
                     </div>
                 </div>
                 <div class="col-md-10 content">
@@ -83,9 +86,9 @@
 							?>
 							
                         </div>
-						<!--Patient complete -->
+						<!-- Patient complete -->
                         
-						<!--Allot-deallot tab -->
+						<!-- Allot-deallot tab -->
                         <div class="tab-pane fade show active" id="allot-bed" role="tabpanel" aria-labelledby="allot-bed-tab">
 							<div class="row mt-5">
 								
@@ -101,6 +104,18 @@
 											<button type="submit" class="col-2 btn btn-danger" name="bed-deallot-btn" value="bed-deallot-btn" >
 														<strong>Deallot</strong>
 											</button>
+										</div>
+										<div class="row justify-content-center">
+											<?php
+								if(isset($_POST['bed-allot-btn'])){
+									include 'allot_bed.php';
+								}
+							?>
+							<?php
+								if(isset($_POST['bed-deallot-btn'])){
+									include 'deallot_bed.php';
+								}
+							?>
 										</div>
 										
 								</div>
@@ -122,22 +137,11 @@
 												
 												?>
 											</div>
-										</div>		
+									</div>		
 								</div>
 						
 							</div>
-							<?php
-								if(isset($_POST['bed-allot-btn'])){
-									include 'allot_bed.php';
-								}
-							?>
-							<?php
-								if(isset($_POST['bed-deallot-btn'])){
-									include 'deallot_bed.php';
-								}
-							?>
-						
-						
+							
 						</div>
 						<!--Allot-Deallot complete -->
 						
@@ -155,7 +159,11 @@
 							?>
 						</div>
 						<!--Doctor complete-->
-						
+						<div class="tab-pane fade" id="positive" role="tabpanel" aria-labelledby="positive-tab">
+							<?php
+								include 'covid_pos.php';	
+							?>
+						</div>
 						
                     </div>
                 </div>

@@ -10,7 +10,7 @@
 	echo '<div class="mt-lg-5 row row-content justify-content-center">
 		<div >
 			<div class="table-responsive">
-				<table class="table table-striped" style="overflow-y: scroll; display:block;" height="400"> 
+				<table class="table table-striped" style="display:block;" height="400"> 
 					<thead class="thead-dark">
 						<tr>
 							<th>Name</th> 

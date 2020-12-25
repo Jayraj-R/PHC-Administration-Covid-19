@@ -21,12 +21,11 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="style.css">
 
     <title>
-        PHC
+        Covid-19 Health Center
     </title>
 </head>
 
@@ -38,12 +37,12 @@
 <div class="row justify-content-center login-card">
         <div class="col-8 mt-5">
             <div class="card">
-                <h3 class="card-header bg-main text-white"><center>Primary Health Center</center></h3>
+                <h3 class="card-header bg-main text-white"><center>Primary Health Center</center><small><strong><center>(Covid-19 block)</center></small></strong></h3>
                 <div class="card-body">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#student" role="tab" data-toggle="tab">
-                                Student
+                            <a class="nav-link active" href="#patient" role="tab" data-toggle="tab">
+                                Studnet
                             </a>
                         </li>
 
@@ -57,17 +56,17 @@
 
                     <div class="tab-content">
 
-                        <div role="tabpanel" class="tab-pane fade show active" id="student">
+                        <div role="tabpanel" class="tab-pane fade show active" id="patient">
 
                             <form class="mt-5 padding-16" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                                 <div class="form-group row">
-                                    <label for="roll" class="col-md-2 col-form-label ">Roll no.</label>
+                                    <label for="roll" class="col-md-2 col-form-label ">Roll no.<span style="color: red">*</span></label>
                                     <div class="col-md-4">
                                         <input type="text" class="form-control" id="roll" name="roll" placeholder="Roll number" required>
                                     </div>
 
 
-                                    <label for="fname" class="col-md-2 col-form-label ">Full Name</label>
+                                    <label for="fname" class="col-md-2 col-form-label ">Full Name<span style="color: red">*</span></label>
                                     <div class="col-md-4">
                                         <input type="fname" class="form-control" id="fname" name="fname" placeholder="Full Name" required>
                                     </div>
@@ -150,10 +149,11 @@
                                 </div>
                             </form>
 							
+							<!-- This block will be activated only when "Check for an appointment" button is pressed. -->
 							<?php
 								if(isset($_POST['submit'])) 
 								{ 
-									include 'student_form.php';
+									include 'patient_form.php';
 
 								}
 							?>
@@ -185,22 +185,22 @@
                                         </div>
                                     </div>
 									
-									
+									<!-- This block will be activated only when "Login" button is pressed. -->
 									<?php
-if(isset($_POST['login'])) 
-{ 
-    if($_POST['userid']&& $_POST['pass']){
-				if($_POST['userid']=="pdpmiiitdmj"&&$_POST['pass']==12345){
-					header('Location: main.php');
-				}
-				else echo '<h4 style="color: red; font-size: 0.9em; text-align: center;">Wrong credential(s)</h4>';
+										#------------------ checking user-id and password -----------------
+										if(isset($_POST['login'])){ 
+											if($_POST['userid']&& $_POST['pass']){
+												if($_POST['userid']=="pdpmiiitdmj"&&$_POST['pass']==12345){
+													header('Location: main.php');
+												}
+												else echo '<h4 style="color: red; font-size: 0.9em; text-align: center;">Wrong credential(s)</h4>';
 
-			}
-			else {
-				echo"enter both userID AND password<br>";
-			}
-}
-?>
+											}
+											else {
+												echo"enter both userID AND password<br>";
+											}
+										}
+									?>
 
 
                                     <div class="form-group row">
@@ -213,7 +213,6 @@ if(isset($_POST['login']))
                                     </div>
                                 </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -231,12 +230,10 @@ if(isset($_POST['login']))
         </div>
     </footer>
 	
-	
-	
-	
+	<!--build:js/main.js-->
     <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!--endbuild-->
 </body>
 
 </html>

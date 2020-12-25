@@ -1,8 +1,10 @@
 <?php
-	echo '<div class="d-none">';
-	$conn=mysql_connect('localhost','root','');
+	echo '<div class="d-none">';										#Bootstrap 'd-none' as mysql_connect is an old syntax.
+	$conn=mysql_connect('localhost','root',''); 						#for wampserver/xampserver user
 	$db=mysql_select_db('dbms_pr');
 	echo '</div>';
+	
+	#---------------------------- STUDENT,BED : Display student details who occupies beds currently. ----------------------------------------------
 	$qry="SELECT STUDENT.NAME,BED.ROLL,STUDENT.BRANCH,STUDENT.`phone_number`,BED.S_NO,BED.IN_DATE FROM BED,STUDENT WHERE STUDENT.ROLL=BED.ROLL AND BED.VACANCY=0  ";
 	$result=mysql_query($qry);
 	$num=mysql_num_rows($result);
@@ -36,5 +38,6 @@
 		}
 	echo "</table></div></div></div>";
 	}
+	#when given roll number does not match any roll number in the database.
 	else echo"NO BED IS ALLOTED YET<br>";
 ?>

@@ -1,0 +1,1 @@
+This file is to give an idea about the database and the tables created by us.

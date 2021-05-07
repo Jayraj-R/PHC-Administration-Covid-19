@@ -4,7 +4,7 @@ We are allowing fixed number of visitors to tackle the above discussed problem.
 ## This System was developed by</br>
 ### <a href="https://github.com/Jayraj-R">Jayraj</a></br>
 ### <a href="https://github.com/Aman-kumar001">Aman</a></br>
-### we have one more member in this.</br>
+### <a href="https://github.com/hhrritik">Hritik</a>.</br>
 </br>
 This project is a Hospital Management System created for the purpose of managing medical facilities for our college PDPM IIITDMJ .
 
@@ -20,6 +20,7 @@ The features provided by the PHC Administration are:
 4) Doctors details
 5) patient list
 6) Reset timeslots
+7)Covid19 patients
 
 The main function is to allot the time slot for the patient. This is done automatically by a php program. The general idea is that we will allocate bed according to time of registration for one paricualar day. After that the adminstrator would have to press the reset slot button .So the time slots would be cleared and new patient name and details could then be automatically entered as per their time of registration.
 
